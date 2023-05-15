@@ -1,0 +1,13 @@
+[Unit]
+Description=Flask Application deployed to be served using Gunicorn
+After=network.target
+
+[Service]
+User=oluwaninsolaao
+Group=www-data
+WorkingDirectory=/home/oluwaninsolaao/git/deploy-flask-app/
+Environment="PATH=/home/oluwaninsolaao/git/deploy-flask-app/venv/bin"
+ExecStart=/home/oluwaninsolaao/git/deploy-flask-app/venv/bin/gunicorn --workers 3 --bind unix:app.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
