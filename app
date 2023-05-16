@@ -1,9 +1,11 @@
 server {
-	listen 80;
-	server_name _;
+        listen 80;
+        listen [::]:80;
 
-	location / {
-		include proxy_params;
+        server_name localhost;
+
+        location /app {
+                include proxy_params;
 		proxy_pass http://unix:/home/oluwaninsolaao/git/deploy-flask-app/app.sock;
-	}
+        }
 }
